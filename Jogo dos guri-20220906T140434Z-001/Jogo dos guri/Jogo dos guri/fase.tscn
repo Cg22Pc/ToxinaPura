@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://pixel-art-cartoon-astronaut-character_41992-1145.webp" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 56, 60.5 )
+
+[node name="fase" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="player" type="KinematicBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="player"]
+position = Vector2( 247.5, 51 )
+scale = Vector2( 0.177316, 0.191693 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 248, 51.5 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}

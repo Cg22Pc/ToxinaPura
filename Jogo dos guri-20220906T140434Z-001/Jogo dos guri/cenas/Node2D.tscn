@@ -1,0 +1,369 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://recurso/frames astronauta2.png" type="Texture" id=1]
+[ext_resource path="res://scripts jogo dos guri manha/KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://recurso/cenario jogo 6 .kra-autosave.png" type="Texture" id=3]
+[ext_resource path="res://scripts jogo dos guri manha/fase.gd" type="Script" id=4]
+[ext_resource path="res://cenas/inimigo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts jogo dos guri manha/dano.gd" type="Script" id=6]
+[ext_resource path="res://recurso/vidas.png" type="Texture" id=7]
+[ext_resource path="res://cenas/inimigo2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://cenas/inimigo3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://cenas/inimigo4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts jogo dos guri manha/nave.gd" type="Script" id=11]
+[ext_resource path="res://recurso/IMPACT.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://cenas/inimigo5.tscn" type="PackedScene" id=13]
+[ext_resource path="res://cenas/inimigo6.tscn" type="PackedScene" id=14]
+[ext_resource path="res://cenas/pontomenor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://recurso/nave1.png" type="Texture" id=16]
+[ext_resource path="res://recurso/nave2.png" type="Texture" id=17]
+[ext_resource path="res://recurso/nave.png" type="Texture" id=18]
+[ext_resource path="res://recurso/frames astronauta5.png" type="Texture" id=19]
+[ext_resource path="res://recurso/frames astronauta.png" type="Texture" id=20]
+[ext_resource path="res://recurso/frames astronauta4.png" type="Texture" id=21]
+[ext_resource path="res://recurso/frames astronauta3.png" type="Texture" id=22]
+[ext_resource path="res://recurso/frames astronauta7.png" type="Texture" id=23]
+[ext_resource path="res://recurso/frames astronauta6.png" type="Texture" id=24]
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 320, 320 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "costas",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "frente",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16.3333, 15.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 9.375, 9.33333 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="DynamicFont" id=7]
+size = 30
+font_data = ExtResource( 12 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "nave",
+"speed": 1.5
+} ]
+
+[node name="fase" type="Node2D"]
+position = Vector2( 1, 0 )
+script = ExtResource( 4 )
+
+[node name="cenario" type="Sprite" parent="."]
+position = Vector2( 540, 463 )
+scale = Vector2( 1.537, 1.348 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 541, 348 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="player"]
+scale = Vector2( 0.132813, 0.15 )
+frames = SubResource( 16 )
+animation = "costas"
+playing = true
+
+[node name="player" type="Area2D" parent="player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/player"]
+visible = false
+scale = Vector2( 1, 1.45 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player"]
+visible = false
+scale = Vector2( 1.6, 2.25 )
+shape = SubResource( 3 )
+
+[node name="dano" type="Area2D" parent="player"]
+visible = false
+scale = Vector2( 1.7, 2.3 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/dano"]
+shape = SubResource( 6 )
+
+[node name="paredes" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 540, 463 )
+scale = Vector2( 1.467, 1.318 )
+polygon = PoolVector2Array( -368.78, 6.06982, -224.267, 6.82852, -223.586, 75.8726, -368.78, 75.1138, -368.78, 346.737, 367.417, 346.737, 367.417, 75.8726, 226.312, 76.6313, 226.312, 6.06982, 367.417, 6.82852, 367.417, -2.27618, 217.451, -2.27618, 217.451, 84.9773, 346.285, 84.9773, 346.967, 195.751, 295.16, 195.751, 295.16, 216.995, 346.285, 217.754, 346.285, 327.769, -343.558, 327.769, -343.558, 216.995, -291.752, 216.995, -291.752, 196.51, -343.558, 196.51, -344.24, 84.9773, -214.042, 85.736, -214.042, -2.27618, -368.78, -2.27618 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 93, -1 )
+polygon = PoolVector2Array( -94, 403, 132, 402, 132, 287, -57, 287, -57, 25, 427, 25, 427, 141, 472, 141, 472, 25, 955, 25, 955, 287, 767, 287, 766, 402, 986, 402, 986, 391, 779, 391, 779, 298, 986, 299, 986, 7, -94, 8, -94, 298, 119, 298, 119, 390, -94, 391 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -113, -4 )
+polygon = PoolVector2Array( 220, 231, 334, 231, 334, 203, 220, 203 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -110, -8 )
+polygon = PoolVector2Array( 217, 91, 218, 148, 331, 148, 331, 91 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -50, -8 )
+polygon = PoolVector2Array( 346, 91, 346, 148, 497, 148, 497, 91 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 41, -8 )
+polygon = PoolVector2Array( 596, 91, 597, 148, 747, 148, 748, 91 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 111, -6 )
+polygon = PoolVector2Array( 753, 89, 753, 147, 866, 147, 866, 89 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 106, -5 )
+polygon = PoolVector2Array( 757, 204, 757, 233, 872, 233, 872, 204 )
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 0, -5 )
+polygon = PoolVector2Array( 519, 232, 519, 319, 565, 319, 566, 233, 679, 232, 679, 204, 406, 204, 406, 233 )
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 65, -1 )
+polygon = PoolVector2Array( 681, 199, 680, 287, 567, 287, 567, 315, 680, 315, 680, 402, 728, 402, 727, 199 )
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -66, -4 )
+polygon = PoolVector2Array( 405, 290, 519, 290, 519, 318, 405, 317, 405, 406, 358, 406, 358, 202, 405, 202 )
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 64, 1 )
+polygon = PoolVector2Array( 682, 460, 729, 460, 728, 574, 682, 574 )
+
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -64, 2 )
+polygon = PoolVector2Array( 403, 458, 403, 573, 356, 573, 357, 458 )
+
+[node name="CollisionPolygon2D14" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 1, 3 )
+polygon = PoolVector2Array( 517, 573, 410, 574, 410, 545, 673, 545, 673, 572, 565, 572, 565, 664, 518, 664 )
+
+[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 102, 5 )
+polygon = PoolVector2Array( 804, 658, 804, 744, 757, 744, 757, 629, 879, 629, 879, 658 )
+
+[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 52, 4 )
+polygon = PoolVector2Array( 737, 659, 585, 658, 585, 630, 737, 630 )
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 67, 11 )
+polygon = PoolVector2Array( 725, 797, 910, 796, 910, 826, 571, 826, 571, 797, 679, 797, 678, 710, 726, 710 )
+
+[node name="CollisionPolygon2D18" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -1, 4 )
+polygon = PoolVector2Array( 566, 745, 565, 833, 521, 833, 521, 744, 412, 745, 412, 718, 675, 717, 675, 745 )
+
+[node name="CollisionPolygon2D19" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -65, 10 )
+polygon = PoolVector2Array( 407, 715, 406, 798, 514, 798, 514, 828, 174, 828, 174, 798, 359, 797, 360, 715 )
+
+[node name="CollisionPolygon2D20" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -44, 2 )
+polygon = PoolVector2Array( 340, 659, 340, 632, 491, 632, 491, 659 )
+
+[node name="CollisionPolygon2D21" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -92, 5 )
+polygon = PoolVector2Array( 270, 658, 199, 658, 199, 629, 317, 628, 317, 744, 270, 744 )
+
+[node name="CollisionPolygon2D22" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( 1, -2 )
+polygon = PoolVector2Array( 507, 376, 507, 387, 575, 387, 575, 376 )
+
+[node name="CollisionPolygon2D23" type="CollisionPolygon2D" parent="paredes"]
+visible = false
+position = Vector2( -9, -2 )
+polygon = PoolVector2Array( 517, 387, 517, 376, 415, 376, 415, 489, 688, 489, 687, 375, 585, 376, 585, 387, 675, 387, 675, 478, 427, 478, 427, 387 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 119.0
+margin_top = 322.0
+margin_right = 324.0
+margin_bottom = 401.0
+custom_fonts/font = SubResource( 7 )
+text = "
+"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 317.0
+margin_right = 237.0
+margin_bottom = 348.0
+text = "
+PONTOS :"
+
+[node name="hud" type="Node2D" parent="."]
+
+[node name="Vidas" type="Sprite" parent="hud"]
+position = Vector2( 50, 532 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 7 )
+
+[node name="Vidas2" type="Sprite" parent="hud"]
+position = Vector2( 164, 531 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 7 )
+
+[node name="Vidas3" type="Sprite" parent="hud"]
+position = Vector2( 108, 532 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 7 )
+
+[node name="inimigo" parent="." instance=ExtResource( 5 )]
+position = Vector2( 74, 58 )
+
+[node name="inimigo2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 999, 845 )
+
+[node name="inimigo3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 72, 862 )
+
+[node name="inimigo4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1020, 60 )
+
+[node name="inimigo5" parent="." instance=ExtResource( 13 )]
+position = Vector2( 541, 171 )
+
+[node name="inimigo6" parent="." instance=ExtResource( 14 )]
+position = Vector2( 542, 695 )
+
+[node name="pontomenor" parent="." instance=ExtResource( 15 )]
+position = Vector2( 153, 692 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1023, 263 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 253, 180 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor4" parent="." instance=ExtResource( 15 )]
+position = Vector2( 846, 608 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor5" parent="." instance=ExtResource( 15 )]
+position = Vector2( 554, 519 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor6" parent="." instance=ExtResource( 15 )]
+position = Vector2( 604, 75.0001 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor7" parent="." instance=ExtResource( 15 )]
+position = Vector2( 251, 433 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor8" parent="." instance=ExtResource( 15 )]
+position = Vector2( 829, 430 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor9" parent="." instance=ExtResource( 15 )]
+position = Vector2( 603, 270 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor10" parent="." instance=ExtResource( 15 )]
+position = Vector2( 355, 602 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor11" parent="." instance=ExtResource( 15 )]
+position = Vector2( 705, 596 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="pontomenor12" parent="." instance=ExtResource( 15 )]
+position = Vector2( 69.0001, 254 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( 542, 432 )
+scale = Vector2( 0.32, 0.22 )
+frames = SubResource( 8 )
+playing = true
+
+[connection signal="area_entered" from="player/player" to="player" method="_on_player_area_entered"]
+[connection signal="area_entered" from="player/dano" to="." method="_on_Area2D_area_entered"]
